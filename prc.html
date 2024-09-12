@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Data - PRC Calculation</title>
+    <link rel="stylesheet" href="prc-styles.css">
+
+    <style>
+       /* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+}
+
+/* Container styling */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Hidden and warning styles */
+.hidden {
+    display: none;
+}
+
+.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.warning h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.warning ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Result section styling */
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 4px;
+}
+
+#prcValue {
+    font-size: 1.2em;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Carbon Neutrality in Indian Coal Mining</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#carbon-footprint">Carbon Footprint Calculator</a></li>
+                <li><a href="#mining-data">Mining Data</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="#previous-data">Previous Data</a></li>
+                <li><a href="#comparison">Comparison Charts</a></li>
+            </ul>
+        </nav>
+        <button id="logout">Logout</button> 
+    </header>
+    <div class="container">
+        <h1>Mining Data - PRC Calculation</h1>
+        <form id="prcForm">
+            <div>
+                <label for="production">Production (Tons):</label>
+                <input type="number" id="production" required>
+            </div>
+            <div>
+                <label for="pricePerTon">Price Per Ton (₹):</label>
+                <input type="number" id="pricePerTon" required>
+            </div>
+            <div>
+                <label for="operatingCosts">Operating Costs (₹):</label>
+                <input type="number" id="operatingCosts" required>
+            </div>
+            <div>
+                <label for="developmentCosts">Development Costs (₹):</label>
+                <input type="number" id="developmentCosts" required>
+            </div>
+            <div>
+                <label for="environmentalCosts">Environmental Costs (₹):</label>
+                <input type="number" id="environmentalCosts" required>
+            </div>
+            <div>
+                <label for="taxes">Taxes (₹):</label>
+                <input type="number" id="taxes" required>
+            </div>
+            <div>
+                <label for="year">Year of Production:</label>
+                <select id="year" required>
+                    <option value="1">Year 1</option>
+                    <option value="2">Year 2</option>
+                    <option value="3">Year 3+</option>
+                </select>
+            </div>
+            <button type="submit">Calculate PRC</button>
+        </form>
+
+        <div id="result" class="hidden">
+            <h2>PRC Result</h2>
+            <p id="prcValue"></p>
+        </div>
+
+        <div id="precautionContainer" class="warning hidden">
+            <h3>Warning: PRC Exceeds Threshold!</h3>
+            <p>Based on your data, the PRC exceeds the acceptable threshold for this year. Please consider the following precautions:</p>
+            <ul>
+                <li>Review and reduce operating costs where possible.</li>
+                <li>Ensure that environmental regulations are being adhered to.</li>
+                <li>Consider optimizing production efficiency to meet the PRC targets.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("prcForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get input values
+            const production = parseFloat(document.getElementById("production").value);
+            const pricePerTon = parseFloat(document.getElementById("pricePerTon").value);
+            const operatingCosts = parseFloat(document.getElementById("operatingCosts").value);
+            const developmentCosts = parseFloat(document.getElementById("developmentCosts").value) / 10; // Spread over 10 years
+            const environmentalCosts = parseFloat(document.getElementById("environmentalCosts").value);
+            const taxes = parseFloat(document.getElementById("taxes").value);
+            const year = parseInt(document.getElementById("year").value);
+
+            // PRC Calculation
+            const prc = (production * pricePerTon) - (operatingCosts + developmentCosts + environmentalCosts + taxes);
+
+            // Determine the threshold for the selected year
+            let threshold = 1.0; // 100% PRC by default
+            if (year === 1) {
+                threshold = 0.5; // 50% PRC for the first year
+            } else if (year === 2) {
+                threshold = 0.75; // 75% PRC for the second year
+            }
+
+            const allowedPRC = production * pricePerTon * threshold;
+
+            // Display PRC result
+            document.getElementById("prcValue").textContent = `Calculated PRC: ₹${prc.toFixed(2)}`;
+            document.getElementById("result").classList.remove("hidden");
+
+            // Check if the calculated PRC exceeds the allowed PRC threshold
+            if (prc > allowedPRC) {
+                document.getElementById("precautionContainer").classList.remove("hidden");
+            } else {
+                document.getElementById("precautionContainer").classList.add("hidden");
+            }
+        });
+    </script>
+</body>
+</html>
