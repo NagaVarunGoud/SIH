@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Data</title>
+    <link rel="stylesheet" href="previous-styles.css">
+</head>
+<body>
+    <header>
+        <h1>Previous Data</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="carbon-footprint.html">Carbon Footprint Calculator</a></li>
+                <li><a href="mining-data.html">Mining Data</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="previous-data.html">Previous Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Carbon Footprint Data</h2>
+        <table id="carbonFootprintTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Coal</th>
+                    <th>Fuel</th>
+                    <th>Electricity</th>
+                    <th>Carbon Footprint</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Mining Data</h2>
+        <table id="miningDataTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Coal</th>
+                    <th>Fuel</th>
+                    <th>Electricity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carbonFootprintData = JSON.parse(localStorage.getItem('carbonFootprintData')) || [];
+            const miningData = JSON.parse(localStorage.getItem('miningData')) || [];
+
+            const carbonTableBody = document.getElementById('carbonFootprintTable').querySelector('tbody');
+            const miningTableBody = document.getElementById('miningDataTable').querySelector('tbody');
+
+            // Populate Carbon Footprint Table
+            carbonFootprintData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${new Date(item.timestamp).toLocaleString()}</td>
+                    <td>${item.coal}</td>
+                    <td>${item.fuel}</td>
+                    <td>${item.electricity}</td>
+                    <td>${item.carbonFootprint.toFixed(2)}</td>
+                `;
+                carbonTableBody.appendChild(row);
+            });
+
+            // Populate Mining Data Table
+            miningData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${new Date(item.timestamp).toLocaleString()}</td>
+                    <td>${item.coal}</td>
+                    <td>${item.fuel}</td>
+                    <td>${item.electricity}</td>
+                `;
+                miningTableBody.appendChild(row);
+            });
+        });
+    </script>
+    <!-- Footer Section -->
+    <footer class="apple-footer">
+        <div class="footer-container">
+            <!-- Site Map Section -->
+            <div class="site-map">
+                <span id="breadcrumb"></span>
+            </div>
+
+            <!-- Footer Sections -->
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3>About us</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Carbon Footprint</h3>
+                    <ul>
+                        <li><a href="carbon-footprint.html">CFP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Mining Data</h3>
+                    <ul>
+                        <li><a href="mining-data.html">Mining Data</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Comparison</h3>
+                    <ul>
+                        <li><a href="comparison.html">Comparison</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <p>&copy; 2024. All rights reserved.</p>
+                <p>Powered by SIH.</p>
+            </div>
+        </div>
+        <button class="logout-button" onclick="logout()">Log Out</button>
+    </footer>
+
+</body>
+</html>

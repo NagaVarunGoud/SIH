@@ -1,0 +1,282 @@
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+header h1 {
+    font-weight: bold;
+    color: #000000;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #009bd6;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: rgba(0, 155, 214, 0.2);
+    color: #00b8ff;
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Section Styles */
+section {
+    padding: 20px;
+    background-color: #fff;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #00b8ff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #009bd6;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #00719c;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+/* Button Styles */
+button {
+    background-color: #00b8ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #009bd6;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        padding: 8px 12px;
+    }
+
+    section {
+        margin: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    nav ul {
+        gap: 5px;
+    }
+
+    nav ul li a {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    form button, button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+/* Footer Styling */
+.apple-footer {
+    height: 100%;
+    background-color: #f8f8f8;
+    padding: 40px 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #666;
+    text-align: left;
+    background-image: url('logo.png'); /* Add background image */
+    background-size:contain; /* Ensure the image covers the entire footer */
+    background-position:center; /* Center the background image */
+    left: 0;
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+/* Container to center the footer content */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px; /* Add padding to prevent content from touching edges */
+    background-color: rgba(255, 255, 255, 0.8); /* Make content background slightly transparent for readability */
+}
+
+/* Other footer styles remain unchanged */
+
+/* Footer Sections */
+.footer-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-section {
+    width: 12%;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #0071e3;
+}
+
+/* Copyright Section */
+.footer-copyright {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-copyright p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 13px;
+}
+
+        .logout-button {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-button:hover {
+            background-color: #ff1a1a;
+        }

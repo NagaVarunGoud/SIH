@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Calculator</title>
+    <link rel="stylesheet" href="carbon-styles.css">
+    <script src="carbon-footprint.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Carbon Footprint Calculator</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="carbon-footprint.html">Carbon Footprint Calculator</a></li>
+                <li><a href="mining-data.html">Mining Data</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="previous-data.html">Previous Data</a></li>
+                <li><a href="comparison.html">Comparison</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Calculate Carbon Footprint</h2>
+        <form id="carbonFootprintForm">
+            <label for="coal">Coal Mined (tons):</label>
+            <input type="number" id="coal" name="coal" required>
+            
+            <label for="fuel">Fuel Used (liters):</label>
+            <input type="number" id="fuel" name="fuel" required>
+            
+            <label for="electricity">Electricity Used (kWh):</label>
+            <input type="number" id="electricity" name="electricity" required>
+            
+            <button type="submit">Calculate</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Previous Calculations</h2>
+        <table id="carbonFootprintTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Coal Mined (tons)</th>
+                    <th>Fuel Used (liters)</th>
+                    <th>Electricity Used (kWh)</th>
+                    <th>Carbon Footprint (kg CO2)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('carbonFootprintForm');
+            const tableBody = document.getElementById('carbonFootprintTable').getElementsByTagName('tbody')[0];
+
+            // Function to calculate carbon footprint (example formula)
+            function calculateCarbonFootprint(coal, fuel, electricity) {
+                const coalFactor = 2.5; // kg CO2 per ton of coal
+                const fuelFactor = 2.3; // kg CO2 per liter of fuel
+                const electricityFactor = 0.5; // kg CO2 per kWh
+
+                return (coal * coalFactor) + (fuel * fuelFactor) + (electricity * electricityFactor);
+            }
+
+            // Load existing data from localStorage
+            const existingData = JSON.parse(localStorage.getItem('carbonFootprintData')) || [];
+            existingData.forEach(data => {
+                const newRow = tableBody.insertRow();
+                newRow.insertCell(0).textContent = new Date(data.timestamp).toLocaleString();
+                newRow.insertCell(1).textContent = data.coal;
+                newRow.insertCell(2).textContent = data.fuel;
+                newRow.insertCell(3).textContent = data.electricity;
+                newRow.insertCell(4).textContent = data.carbonFootprint.toFixed(2);
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const coal = parseFloat(document.getElementById('coal').value);
+                const fuel = parseFloat(document.getElementById('fuel').value);
+                const electricity = parseFloat(document.getElementById('electricity').value);
+
+                const carbonFootprint = calculateCarbonFootprint(coal, fuel, electricity);
+                const date = new Date().toLocaleString();
+
+                const newRow = tableBody.insertRow();
+                newRow.insertCell(0).textContent = date;
+                newRow.insertCell(1).textContent = coal;
+                newRow.insertCell(2).textContent = fuel;
+                newRow.insertCell(3).textContent = electricity;
+                newRow.insertCell(4).textContent = carbonFootprint.toFixed(2);
+
+                // Save data to localStorage
+                existingData.push({
+                    timestamp: new Date(),
+                    coal,
+                    fuel,
+                    electricity,
+                    carbonFootprint
+                });
+                localStorage.setItem('carbonFootprintData', JSON.stringify(existingData));
+
+                form.reset();
+            });
+        });
+    </script>
+    <!-- Footer Section -->
+    <footer class="apple-footer">
+        <div class="footer-container">
+            <!-- Site Map Section -->
+            <div class="site-map">
+                <span id="breadcrumb"></span>
+            </div>
+
+            <!-- Footer Sections -->
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3>About us</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Carbon Footprint</h3>
+                    <ul>
+                        <li><a href="carbon-footprint.html">CFP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Mining Data</h3>
+                    <ul>
+                        <li><a href="mining-data.html">Mining Data</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Comparison</h3>
+                    <ul>
+                        <li><a href="comparison.html">Comparison</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <p>&copy; 2024. All rights reserved.</p>
+                <p>Powered by SIH.</p>
+            </div>
+        </div>
+        <button class="logout-button" onclick="logout()">Log Out</button>
+    </footer>
+
+</body>
+</html>

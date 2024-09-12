@@ -1,0 +1,203 @@
+/* General Styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* White background as preferred */
+    color: #001f2b; /* Black text color */
+}
+
+/* Header */
+header {
+    justify-content: space-between;
+    background-color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+header h1 {
+    margin: 0;
+    padding: 15px;
+    color: #001f2b; /* Use a color from your palette */
+    font-size: 24px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center align the nav items */
+    background-color: #f4f4f4; /* Background for navigation */
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #00719c; /* Use a color from your palette */
+    font-weight: bold;
+    text-align: center;
+}
+
+nav ul li a:hover {
+    background-color: #e0e0e0; /* Light gray background on hover */
+}
+
+/* Section */
+section {
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* Center the section content */
+}
+
+section h2 {
+    border-bottom: 2px solid #009bd6; /* Use a color from your palette */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* Canvas */
+canvas {
+    max-width: 100%;
+    height: 200px; /* Further reduced height for each chart */
+    display: block; /* Ensure that the canvas elements are block elements */
+    margin: 0 auto; /* Center the canvas */
+}
+
+/* Specific Canvas Sizes */
+#comparisonChart {
+    height: 200px; /* Specific height for the comparison chart */
+}
+
+#deforestationChart,
+#soilErosionChart,
+#waterPollutionChart,
+#airPollutionChart,
+#respiratoryImpactChart,
+#waterborneDiseasesChart {
+    height: 180px; /* Specific height for environmental and health impact charts */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack the navigation items vertically */
+    }
+
+    nav ul li {
+        margin-bottom: 1px; /* Add a small space between items */
+    }
+    
+    nav ul li a {
+        padding: 10px;
+    }
+    
+    canvas {
+        height: 120px; /* Further reduced height for smaller screens */
+    }
+}
+/* Footer Styling */
+.apple-footer {
+    height: 100%;
+    background-color: #f8f8f8;
+    padding: 40px 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #666;
+    text-align: left;
+    background-image: url('logo.png'); /* Add background image */
+    background-size:contain; /* Ensure the image covers the entire footer */
+    background-position:center; /* Center the background image */
+    left: 0;
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+/* Container to center the footer content */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px; /* Add padding to prevent content from touching edges */
+    background-color: rgba(255, 255, 255, 0.8); /* Make content background slightly transparent for readability */
+}
+
+/* Other footer styles remain unchanged */
+
+/* Footer Sections */
+.footer-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-section {
+    width: 12%;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #0071e3;
+}
+
+/* Copyright Section */
+.footer-copyright {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer-copyright p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 13px;
+}
+
+        .logout-button {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .logout-button:hover {
+            background-color: #ff1a1a;
+        }

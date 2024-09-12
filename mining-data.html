@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mining Data</title>
+    <link rel="stylesheet" href="mining-styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mining Data</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="carbon-footprint.html">Carbon Footprint Calculator</a></li>
+                <li><a href="mining-data.html">Mining Data</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="previous-data.html">Previous Data</a></li>
+                <li><a href="comparison.html">Comparison</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Enter Mining Data</h2>
+        <form id="mining-data-form">
+            <label for="coal">Coal Mined (tons):</label>
+            <input type="number" id="coal" name="coal" required>
+            
+            <label for="fuel">Fuel Used (liters):</label>
+            <input type="number" id="fuel" name="fuel" required>
+            
+            <label for="electricity">Electricity Used (kWh):</label>
+            <input type="number" id="electricity" name="electricity" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Mining Data Table</h2>
+        <table id="mining-data-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Coal Mined (tons)</th>
+                    <th>Fuel Used (liters)</th>
+                    <th>Electricity Used (kWh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here -->
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <button onclick="window.location.href='comparison.html';">View Comparison Charts</button>
+    </section>
+
+    <script src="previous-script.js"></script>
+    <!-- Footer Section -->
+    <footer class="apple-footer">
+        <div class="footer-container">
+            <!-- Site Map Section -->
+            <div class="site-map">
+                <span id="breadcrumb"></span>
+            </div>
+
+            <!-- Footer Sections -->
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3>About us</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Carbon Footprint</h3>
+                    <ul>
+                        <li><a href="carbon-footprint.html">CFP</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Mining Data</h3>
+                    <ul>
+                        <li><a href="mining-data.html">Mining Data</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Comparison</h3>
+                    <ul>
+                        <li><a href="comparison.html">Comparison</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <p>&copy; 2024. All rights reserved.</p>
+                <p>Powered by SIH.</p>
+            </div>
+        </div>
+        <button class="logout-button" onclick="logout()">Log Out</button>
+    </footer>
+
+</body>
+</html>
